@@ -27,15 +27,18 @@ class MyStreamer(TwythonStreamer):
 
     def on_error(self, status_code, data):
         print('Error', status_code, data)
+        self.disconnect()
 
 def new_stream(**kw):
-    stream = MyStreamer(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
+    stream = MyStreamer(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET, client_args={'verify':False})
     stream.statuses.filter(**kw)
     return stream
 
 def test():
+#    print('Creating stream for @brdcresearcher')
     while True:
-        s = new_stream(follow='brdcresearcher')
+        s = new_stream(track='@brdcresearcher')
+#    print('end of stream')
 
     #import doctest
     #doctest.testmod(verbose=True, exclude_empty=True)
