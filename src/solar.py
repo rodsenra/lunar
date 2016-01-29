@@ -6,6 +6,7 @@
 
 from datetime import datetime as dt
 
+
 FORMATS = {
     'T': (4,   'battery_voltage', lambda x: float("{0}.{1}".format(x[:3], x[3]))),
     'I': (4,   'input_current',   lambda x: float("{0}.{1}".format(x[:3], x[3]))),
@@ -47,6 +48,7 @@ def parse_tweet(tweet):
         t = t[REC_SIZES[rec_type]+1:]
 
     return record
+
 
 
 def test():
