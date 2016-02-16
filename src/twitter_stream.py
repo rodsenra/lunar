@@ -29,13 +29,13 @@ class MyStreamer(TwythonStreamer):
         print('Error', status_code, data)
 
 def new_stream(**kw):
-    stream = MyStreamer(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
+    stream = MyStreamer(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET, client_args={'verify':False})
     stream.statuses.filter(**kw)
     return stream
 
 def test():
     while True:
-        s = new_stream(follow='brdcresearcher')
+        s = new_stream(track='@brdcresearcher')
 
     #import doctest
     #doctest.testmod(verbose=True, exclude_empty=True)
