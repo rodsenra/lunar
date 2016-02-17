@@ -4,9 +4,7 @@
 @author: Rodrigo Senra
 """
 
-from datetime import datetime as dt
 from twython import TwythonStreamer
-import json
 
 
 # Twitter Access Configuration Tokens
@@ -29,20 +27,20 @@ class MyStreamer(TwythonStreamer):
         print('Error', status_code, data)
         self.disconnect()
 
+
 def new_stream(**kw):
-    stream = MyStreamer(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET, client_args={'verify':False})
+    stream = MyStreamer(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET, client_args={'verify': False})
     stream.statuses.filter(**kw)
     return stream
 
-def test():
-#    print('Creating stream for @brdcresearcher')
-    while True:
-        s = new_stream(track='@brdcresearcher')
-#    print('end of stream')
 
-    #import doctest
-    #doctest.testmod(verbose=True, exclude_empty=True)
+def main():
+    print('Creating stream for @brdcresearcher')
+    s = new_stream(track='@brdcresearcher')
+    while True:
+        pass
+    print('end of stream')
 
 
 if __name__ == '__main__':
-    test()
+    main()

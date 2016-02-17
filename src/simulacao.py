@@ -4,6 +4,7 @@ Created on Mon Jan 18 10:33:24 2016
 
 @author: Emerson Martins
 """
+
 import formulas
 
 from random import uniform

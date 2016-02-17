@@ -21,7 +21,7 @@ FORMATS = {
 REC_SIZES = {k: v[0] for k,v in FORMATS.items()}
 REC_NAMES = {k: v[1] for k,v in FORMATS.items()}
 REC_MASKS = {k: v[2] for k,v in FORMATS.items()}
-
+REC_MARKS = {v[1]: k for k,v in FORMATS.items()}
 
 def parse_tweet(tweet):
     """
@@ -31,7 +31,7 @@ def parse_tweet(tweet):
     :return: a dictionary with tweet fields
 
     >>> parse_tweet('T1235I0023O0015A+2487543G-4256789H123421')
-    {'timestamp': datetime.datetime(2016, 1, 29, 12, 34, 21), 'battery_voltage': 123.5, 'longitude': -42.56789, 'input_current': 2.3, 'latitude': 24.87543, 'output_current': 1.5}
+    {'timestamp': datetime.datetime(2016, 2, 17, 12, 34, 21), 'battery_voltage': 123.5, 'longitude': -42.56789, 'input_current': 2.3, 'latitude': 24.87543, 'output_current': 1.5}
 
     >>> parse_tweet('T1235$OK TUDO BEM')
     {'msg': 'OK TUDO BEM', 'battery_voltage': 123.5}
@@ -50,6 +50,34 @@ def parse_tweet(tweet):
     return record
 
 
+def encode_tweet(**kw):
+    """
+    Encode parameters in the tweet message format.
+
+    :param kwt: all the named message parameters as defined in FORMATS.
+
+    :return: the textual representation of the tweet.
+
+    >>> encode_tweet(timestamp=dt(2016, 2, 17, 12, 34, 21), battery_voltage=123.5, longitude=-42.56789, input_current=2.3, latitude=24.87543, output_current=1.5)
+    'H123421T1235G-4256789I23A2487543O15'
+
+
+    """
+    def format_(field_name, field_value):
+        mark = REC_MARKS[field_name]
+        if mark in ('T', 'I', 'O', 'A', 'G'):
+            value = str(field_value).replace('.', '')
+        elif mark == '$':
+            value = field_value[:140]
+        elif mark == 'H':
+            value = str(field_value.time())[:8].replace(':', '')
+        else:
+            raise Exception('Unexpected {0} mark in {1}:{2}'.format(mark, field_name, field_value))
+
+        return "{0}{1}".format(mark, value)
+
+    tweet = ''.join([format_(k, v) for k,v in kw.items()])
+    return tweet
 
 def test():
     import doctest

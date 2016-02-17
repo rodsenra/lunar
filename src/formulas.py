@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Jan 18 10:33:24 2016
+
+@author: Emerson Martins
+"""
 
 from math import pi, sqrt, sin, cos, asin
 
