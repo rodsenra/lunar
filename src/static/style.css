@@ -56,3 +56,10 @@ input {
     top: 1em;
     width: 122px;
 }
+
+#map {
+ width:600px;
+ height: 600px;
+ float: right;
+ right: 200px;
+}

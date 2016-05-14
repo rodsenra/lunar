@@ -20,6 +20,7 @@ $(function() {
 
     var STATUS_POLLING_MS = 2000;
 
+    setMap();
     next_telemetry();
 
     function next_telemetry() {
@@ -44,9 +45,41 @@ $(function() {
           $('#voltage').val(result.battery_voltage);
           $('#msg').val(result.msg);
 
+        var greenIcon = L.icon({
+            iconUrl: '/static/marker-icon-green.png'
+        });
+
+        var redIcon = L.icon({
+            iconUrl: '/static/marker-icon-red.png'
+        });
+
+        var marker_low = L.marker([result.latitude, result.longitude], {icon: greenIcon} ).addTo(map);
+        map.setView([result.latitude, result.longitude], 18)
        } else {
           $('#hour').css({"color":"red"});
        }
+    }
+
+    function setMap() {
+        map = L.map('map').setView([51.505, -0.09], 18);
+
+        // add an OpenStreetMap tile layer
+          L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+            maxZoom: 18,
+            id: 'rodsenra.5a0dfce3',
+            accessToken: 'pk.eyJ1Ijoicm9kc2VucmEiLCJhIjoiY2lvN28ybDkxMDJyNXZwa2phNjcwdnRqdyJ9.gpLxHX7iHkytgeSmJXQ9xg'
+          }).addTo(map);
+
+        var popup = L.popup();
+
+            function onMapClick(e) {
+                popup
+                    .setLatLng(e.latlng)
+                    .setContent("@" + e.latlng.toString())
+                    .openOn(map);
+            }
+
+            map.on('click', onMapClick);
     }
 
 });
