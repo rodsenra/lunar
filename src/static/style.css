@@ -1,0 +1,58 @@
+@font-face {
+  font-family: 'Orbitron';
+  src: url('/static/fonts/Orbitron/Orbitron-Regular.ttf')  format('truetype'),
+  url('/static/fonts/Orbitron/Orbitron-Bold.ttf')  format('truetype'),
+  url('/static/fonts/Orbitron/Orbitron-Medium.ttf')  format('truetype');
+}
+
+@font-face {
+  font-family: 'Teko';
+  src: url('/static/fonts/Teko/Teko-Regular.ttf')  format('truetype');
+}
+
+ul {
+    list-style-type: none;
+}
+
+
+body, h1, h2 {
+	font-family: "Orbitron";
+    padding: 0;
+    margin: 0.5em;
+}
+
+
+h1 {
+  margin: 0.2em 0 0 0.3em;
+  color: #6b6b6b;
+  font-size: 23px;
+}
+
+h2 {
+  color: #a3897a;
+  font-size: 20px;
+}
+
+
+li {
+	font-family: "Orbitron";
+	font-size: 8pt;
+}
+
+
+input {
+    margin: 0.2em;
+    width: 200px;
+    border: none;
+    color: #5D6F8D;
+	font-size: 13pt;
+    font-family: 'Teko';
+}
+
+
+#logo {
+    right: 1em;
+    position: absolute;
+    top: 1em;
+    width: 122px;
+}

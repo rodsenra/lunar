@@ -23,6 +23,7 @@ REC_NAMES = {k: v[1] for k,v in FORMATS.items()}
 REC_MASKS = {k: v[2] for k,v in FORMATS.items()}
 REC_MARKS = {v[1]: k for k,v in FORMATS.items()}
 
+
 def parse_tweet(tweet):
     """
     Format is the concatenation of records beginning with letters followed by numbers
@@ -78,6 +79,7 @@ def encode_tweet(**kw):
 
     tweet = ''.join([format_(k, v) for k,v in kw.items()])
     return tweet
+
 
 def test():
     import doctest

@@ -7,26 +7,28 @@ Created on Mon Jan 18 10:33:24 2016
 
 from math import pi, sqrt, sin, cos, asin
 
-# Unidades
-#
-# Velocidade        nos
-# Tensao            Volt
-# Corrente          Ampere
-# Diametro          metro
-# Distancia         metro
-# Densidade         kg/m^3
-# Energia           Joule
-# Rotacao           Hertz
-# Torque            N.m
-# Potencia          Watt
-# Tempo             segundo
-
 
 def calcula(porcentagem_de_bateria, latitude1, longitude1,
             latitude2, longitude2,intervalo_de_tempo, distancia_a_percorrer):
     """
     Retorna a ultima corrente calculada para que o
     balanco de energia nao seja negativo.
+
+    Unidades
+    ========
+
+    Velocidade        nos
+    Tensao            Volt
+    Corrente          Ampere
+    Diametro          metro
+    Distancia         metro
+    Densidade         kg/m^3
+    Energia           Joule
+    Rotacao           Hertz
+    Torque            N.m
+    Potencia          Watt
+    Tempo             segundo
+
     """
     diametro_do_helice = 0.23
     densidade_da_agua = 1000.0
@@ -73,10 +75,11 @@ def calcula(porcentagem_de_bateria, latitude1, longitude1,
         if balanco_de_energia > 0.0:
             V_estipulada += 0.1
         if balanco_de_energia < 0.0:
-            V_estipulada -= 0.00001        
-    return [corrente_calculada, rotacao_do_motor, tensao_no_motor,
+            V_estipulada -= 0.00001
+
+    return (corrente_calculada, rotacao_do_motor, tensao_no_motor,
             tempo_de_autonomia, balanco_de_energia, velocidade_calculada,
-            velocidade, distancia, balanco_de_energia]
+            velocidade, distancia, balanco_de_energia)
 
 
 # print calcula(99.0, 52.014897, 4.692556, 52.014791, 4.689938, 30.0, 17750.0)

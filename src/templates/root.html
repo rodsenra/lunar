@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Lunar - Telemetrias via Tweets</title>
+        <link rel="stylesheet" href="/static/jquery-ui-1.11.4/jquery-ui.css">
+        <script src="/static/jquery-1.11.2.min.js"></script>
+        <script src="/static/jquery-ui-1.11.4/jquery-ui.js"></script>
+        <script src="/static/interface.js"></script>
+        <link rel="stylesheet" href="/static/style.css">
+        <script></script>
+    </head>
+
+    <body>
+    <img id="logo" src="static/logo.png" />
+
+    <h1>Equipe Solar</h1>
+
+     <h2>BMS</h2>
+     <ul id="bms">
+         <li> Hora Servidor: <input type="text" id="hour" readonly > </li>
+         <li> Hora Embarcação: <input type="text" id="timestamp8" readonly > </li>
+         <li> Nível da Bateria: <input type="text" id="battery_level" readonly > </li>
+         <li> Voltagem: <input type="text" id="voltage" readonly > </li>
+         <li> Corrente: <input type="text" id="current" readonly > </li>
+         <li> Voltagem Mínima: <input type="text" id="min_voltage" readonly > </li>
+         <li> Voltagem Máxima: <input type="text" id="max_voltage" readonly > </li>
+         <li> Temperatura Mínima: <input type="text" id="min_temperature" readonly > </li>
+         <li> Temperatura Máxima: <input type="text" id="max_temperature" readonly > </li>
+         <li> Erros: <input type="text" id="error" readonly > </li>
+     </ul>
+
+    <h2>Arduíno</h2>
+     <ul id="arduino">
+        <li> Corrente de Entrada: <input type="text" id="input_current" readonly > </li>
+     </ul>
+
+    <h2>Piloto</h2>
+     <ul id="pilot">
+        <li> Mensagem: <input type="text" id="msg" readonly > </li>
+        <li> Alarme: <input type="text" id="alarm" readonly > </li>
+     </ul>
+
+      <h2>Cálculos</h2>
+      <ul id="calculations">
+      <li> Rotação do Motor:  <input type="text" id="engine_rpm" readonly > </li>
+      <li> Voltagem do Motor:  <input type="text" id="engine_voltage" readonly > </li>
+      <li> Tempo de Autonomia:  <input type="text" id="autonomy_time" readonly > </li>
+      <li> Balanço de Energia:  <input type="text" id="energy_balance" readonly > </li>
+      <li> Velocidade:  <input type="text" id="speed" readonly > </li>
+      <li> Velocidade Calculada:  <input type="text" id="calculated_speed" readonly > </li>
+      <li> Corrente Calculada:  <input type="text" id="calculated_current" readonly > </li>
+     </ul>
+
+
+    </body>
+
+</html>
