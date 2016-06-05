@@ -65,14 +65,8 @@ def background_thread():
     s = new_stream(track='MrGarllic')
 
 
-def main():
+def main(host, port):
     logging.basicConfig(filename='lunar.log', level=logging.DEBUG, format='%(asctime)s :: %(levelname)s :: %(message)s')
-    import sys
-    try:
-        host = sys.argv[1]
-        port = int(sys.argv[2])
-    except IndexError as e:
-        print("Expects : server_IP port")
 
     thread = threading.Thread(target=background_thread, args=())
     thread.daemon = True
@@ -83,4 +77,10 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    import sys
+    try:
+        host = sys.argv[1]
+        port = int(sys.argv[2])
+    except IndexError as e:
+        print("Expects : server_IP port")
+    main(host, port)
