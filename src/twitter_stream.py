@@ -65,7 +65,7 @@ def background_thread():
     s = new_stream(track='MrGarllic')
 
 
-if __name__ == '__main__':
+def main():
     logging.basicConfig(filename='lunar.log', level=logging.DEBUG, format='%(asctime)s :: %(levelname)s :: %(message)s')
     import sys
     try:
@@ -80,3 +80,7 @@ if __name__ == '__main__':
 
     logging.info('Starting web server at %s' % port)
     app.run(host=host, port=port)
+
+
+if __name__ == '__main__':
+    main()

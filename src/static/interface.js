@@ -18,7 +18,7 @@ $(function() {
         $("#error").html(textStatus + '<br/>'+ jqXHR.responseText);
     }
 
-    var STATUS_POLLING_MS = 2000;
+    var STATUS_POLLING_MS = 5000;
 
     setMap();
     next_telemetry();
@@ -42,7 +42,6 @@ $(function() {
           $('#voltage').val(result.battery_voltage);
           $('#input_current').val(result.input_current);
           $('#current').val(result.output_current);
-          $('#voltage').val(result.battery_voltage);
           $('#msg').val(result.msg);
 
         var greenIcon = L.icon({
