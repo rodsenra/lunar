@@ -5,6 +5,7 @@
 """
 
 from datetime import datetime as dt
+import logging
 
 
 FORMATS = {
@@ -42,12 +43,14 @@ def parse_tweet(tweet):
     record = {}
     t = tweet[:]
 
-    while t:
-        rec_type = t[0]
-        rec_data = t[1: REC_SIZES[rec_type]+1]
-        record[REC_NAMES[rec_type]] = REC_MASKS[rec_type](rec_data)
-        t = t[REC_SIZES[rec_type]+1:]
-
+    try:
+        while t:
+            rec_type = t[0]
+            rec_data = t[1: REC_SIZES[rec_type]+1]
+            record[REC_NAMES[rec_type]] = REC_MASKS[rec_type](rec_data)
+            t = t[REC_SIZES[rec_type]+1:]
+    except KeyError as ex:
+        logging.error("Failed to parse {0:s} with exception {1:s}".format(tweet, ex))
     return record
 
 
