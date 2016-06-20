@@ -9,15 +9,25 @@ import logging
 
 
 FORMATS = {
-    'T': (4,   'battery_voltage', lambda x: float("{0}.{1}".format(x[:3], x[3]))),
-    'I': (4,   'input_current',   lambda x: float("{0}.{1}".format(x[:3], x[3]))),
-    'O': (4,   'output_current',  lambda x: float("{0}.{1}".format(x[:3], x[3]))),
-    'A': (8,   'latitude',        lambda x: float("{0}.{1}".format(x[:3], x[3:]))),
-    'G': (8,   'longitude',       lambda x: float("{0}.{1}".format(x[:3], x[3:]))),
-    'H': (6,   'timestamp',       lambda x: dt(year=dt.now().year, month=dt.now().month, day=dt.now().day, \
-                                               hour=int(x[:2]), minute=int(x[2:4]), second=int(x[4:6]))),
-    '$': (140, 'msg',             lambda x: x)
+    'V': {"label": 'Tensão da bateria', "unit": "V"},
+    'I': {"label": 'Corrente de Saída', "unit": "A"},
+    'G': {"label": 'Corrente de Entrada', "unit": "A"},
+    'F': {"label": 'Corrente da Bateria', "unit": "A"},
+    'J': {"label": 'Latitude Inicial', "unit": ""},
+    't': {"label": 'Intervalo de Amostragem', "unit": "s"},
+    'K': {"label": 'Longitude Inicial', "unit": ""},
+    'M': {"label": 'Longitude Final', "unit": ""},
+    'H': {"label": 'Hora da Embarcação', "unit": ""},
+    'T': {"label": 'Temperatura na caixa', "unit": "C"},
+    'X': {"label": 'Tensão da saída', "unit": "V"},
+    'B': {"label": 'Embarcação', "unit": ""},
+    '$': {"label": 'Último aviso recebido', "unit": "V"},
 }
+
+
+
+
+    #'H': (6,   'timestamp',       lambda x: dt(year=dt.now().year, month=dt.now().month, day=dt.now().day, hour=int(x[:2]), minute=int(x[2:4]), second=int(x[4:6]))),
 
 REC_SIZES = {k: v[0] for k,v in FORMATS.items()}
 REC_NAMES = {k: v[1] for k,v in FORMATS.items()}
@@ -31,13 +41,6 @@ def parse_tweet(tweet):
 
     :param tweet: the tweet message
     :return: a dictionary with tweet fields
-
-    >>> parse_tweet('T1235I0023O0015A+2487543G-4256789H123421')
-    {'timestamp': datetime.datetime(2016, 2, 17, 12, 34, 21), 'battery_voltage': 123.5, 'longitude': -42.56789, 'input_current': 2.3, 'latitude': 24.87543, 'output_current': 1.5}
-
-    >>> parse_tweet('T1235$OK TUDO BEM')
-    {'msg': 'OK TUDO BEM', 'battery_voltage': 123.5}
-
     """
 
     record = {}
