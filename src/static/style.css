@@ -42,7 +42,7 @@ li {
 
 input {
     margin: 0.2em;
-    width: 200px;
+    width: auto;
     border: none;
     color: #5D6F8D;
 	font-size: 13pt;
@@ -51,7 +51,7 @@ input {
 
 
 #logo {
-    right: 1em;
+    left: 1em;
     position: absolute;
     top: 1em;
     width: 122px;
@@ -62,4 +62,14 @@ input {
  height: 600px;
  float: right;
  right: 200px;
+}
+
+#bms {
+ margin-top: 100px;
+}
+
+#bms, #arduino, #calculations, #pilot {
+ margin-left: 1em;
+ background-color: #eee;
+ width: 400px;
 }

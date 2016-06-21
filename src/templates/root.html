@@ -27,44 +27,43 @@
 
     <script></script>
 
-    <h1>Equipe Solar</h1>
-
-     <h2>BMS</h2>
      <ul id="bms">
-         <li> Hora Servidor: <input type="text" id="hour" readonly > </li>
-         <li> Hora Embarcação: <input type="text" id="timestamp8" readonly > </li>
-         <li> Nível da Bateria: <input type="text" id="battery_level" readonly > </li>
-         <li> Voltagem: <input type="text" id="voltage" readonly > </li>
-         <li> Corrente: <input type="text" id="current" readonly > </li>
-         <li> Voltagem Mínima: <input type="text" id="min_voltage" readonly > </li>
-         <li> Voltagem Máxima: <input type="text" id="max_voltage" readonly > </li>
-         <li> Temperatura Mínima: <input type="text" id="min_temperature" readonly > </li>
-         <li> Temperatura Máxima: <input type="text" id="max_temperature" readonly > </li>
+         <li> Embarcação: <input type="text" id="boat_name" readonly > </li>
+         <li> Última Atualização: <input type="text" id="hour" readonly > </li>
+         <li> Hora na Embarcação: <input type="text" id="boat_timestamp" readonly > </li>
+         <li> Tensão da Bateria: <input type="text" id="battery_voltage" readonly > V </li>
+         <li> Tensão da entrada: <input type="text" id="input_voltage" readonly > V </li>
+         <li> Tensão de saída: <input type="text" id="output_voltage" readonly > V </li>
+         <li> Corrente da Bateria: <input type="text" id="battery_current" readonly > A </li>
+         <li> Corrente de entrada: <input type="text" id="input_current" readonly > A </li>
+         <li> Corrente de saída: <input type="text" id="output_current" readonly > A </li>
+     </ul>
+
+     <ul id="arduino">
+        <li> Temperatura na caixa: <input type="text" id="box_temperature" readonly > °C </li>
+        <li> Latitude Inicial: <input type="text" id="latitude_begin" readonly > </li>
+        <li> Latitude Final: <input type="text" id="latitude_end" readonly > </li>
+        <li> Longitude Inicial: <input type="text" id="longitude_begin" readonly > </li>
+        <li> Longitude Final: <input type="text" id="longitude_end" readonly > </li>
+        <li> Velocidade: <input type="text" id="speed" readonly > nós </li>
+     </ul>
+
+
+    <ul id="calculations">
+      <li> Ti:  <input type="text" id="time_begin" readonly > </li>
+      <li> Tf:  <input type="text" id="time_end" readonly > </li>
+      <li> Energia:  <input type="text" id="energy" readonly > Ah</li>
+      <li> Energia de hoje:  <input type="text" id="energy_of_today" readonly > Ah </li>
+      <li> Rotação do Motor:  <input type="text" id="engine_rpm" readonly > rpm </li>
+      <li> Distância percorrida:  <input type="text" id="distance_travelled" readonly > mn </li>
+      <li> Distância à percorrer:  <input type="text" id="distance_remaining" readonly > mn </li>
+     </ul>
+
+    <ul id="pilot">
+         <li> Mensagem: <input type="text" id="last_msg" readonly > </li>
+         <li> Alarme: <input type="text" id="alarm" readonly > </li>
          <li> Erros: <input type="text" id="error" readonly > </li>
      </ul>
-
-    <h2>Arduíno</h2>
-     <ul id="arduino">
-        <li> Corrente de Entrada: <input type="text" id="input_current" readonly > </li>
-     </ul>
-
-    <h2>Piloto</h2>
-     <ul id="pilot">
-        <li> Mensagem: <input type="text" id="msg" readonly > </li>
-        <li> Alarme: <input type="text" id="alarm" readonly > </li>
-     </ul>
-
-      <h2>Cálculos</h2>
-      <ul id="calculations">
-      <li> Rotação do Motor:  <input type="text" id="engine_rpm" readonly > </li>
-      <li> Voltagem do Motor:  <input type="text" id="engine_voltage" readonly > </li>
-      <li> Tempo de Autonomia:  <input type="text" id="autonomy_time" readonly > </li>
-      <li> Balanço de Energia:  <input type="text" id="energy_balance" readonly > </li>
-      <li> Velocidade:  <input type="text" id="speed" readonly > </li>
-      <li> Velocidade Calculada:  <input type="text" id="calculated_speed" readonly > </li>
-      <li> Corrente Calculada:  <input type="text" id="calculated_current" readonly > </li>
-     </ul>
-
 
     </body>
 

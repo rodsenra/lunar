@@ -10,27 +10,31 @@ from datetime import datetime as dt
 
 MSG_FLAG = '$'
 BOAT_FLAG = 'B'
+LAT_FLAG = ''
+LONG_FLAG = ''
 
 PROTO = {
-    'V': {"label": 'Tensão da bateria', "unit": "V", "convert": lambda x: float(x)},
-    'I': {"label": 'Corrente de Saída', "unit": "A", "convert": lambda x: float(x)},
-    'G': {"label": 'Corrente de Entrada', "unit": "A", "convert": lambda x: float(x)},
-    'F': {"label": 'Corrente da Bateria', "unit": "A", "convert": lambda x: float(x)},
-    'J': {"label": 'Latitude Inicial', "unit": "", "convert": lambda x: float(x)},
-    't': {"label": 'Intervalo de Amostragem', "unit": "s", "convert": lambda x: int(x)},
-    'K': {"label": 'Longitude Inicial', "unit": "", "convert": lambda x: float(x)},
-    'M': {"label": 'Longitude Final', "unit": "", "convert": lambda x: float(x)},
-    'H': {"label": 'Hora da Embarcação', "unit": "",
+    'V': {"label": 'battery_voltage', "convert": lambda x: float(x)},
+    'I': {"label": 'output_current',  "convert": lambda x: float(x)},
+    'G': {"label": 'input_current', "convert": lambda x: float(x)},
+    'F': {"label": 'battery_current', "convert": lambda x: float(x)},
+    'J': {"label": 'latitude_begin', "convert": lambda x: float(x)},
+    LAT_FLAG: {"label": 'latitude_end', "convert": lambda x: float(x)},
+    # TODO: support sampling
+    't': {"label": 'sampling_rate',  "convert": lambda x: int(x)},
+    'K': {"label": 'longitude_begin', "convert": lambda x: float(x)},
+    LONG_FLAG: {"label": 'longitude_end', "convert": lambda x: float(x)},
+    'H': {"label": 'boat_timestamp', "unit": "",
           "convert": lambda x: dt(year=dt.now().year,
                                   month=dt.now().month,
                                   day=dt.now().day,
                                   hour=int(x[:2]),
                                   minute=int(x[2:4]),
                                   second=int(x[4:6]))},
-    'T': {"label": 'Temperatura na caixa', "unit": "C", "convert": lambda x: float(x)},
-    'X': {"label": 'Tensão da saída', "unit": "V", "convert": lambda x: float(x)},
-    BOAT_FLAG: {"label": 'Embarcação', "unit": "", "convert": lambda x: x},
-    MSG_FLAG: {"label": 'Último aviso recebido', "unit": "", "convert": lambda x: x},
+    'T': {"label": 'box_temperature',  "convert": lambda x: float(x)},
+    'X': {"label": 'output_voltage',  "convert": lambda x: float(x)},
+    BOAT_FLAG: {"label": 'boat_name',  "convert": lambda x: x},
+    MSG_FLAG: {"label": 'last_msg', "convert": lambda x: x},
 }
 
 PATTERN = re.compile(r"(\w[\-\+0-9\:\.]+)")
@@ -68,7 +72,7 @@ def parse_tweet(tweet):
     else:
         prefix, boat_name = extract_by_flag(BOAT_FLAG, tweet)
         if boat_name:
-            record[PROTO[BOAT_FLAG]] = boat_name
+            record[BOAT_FLAG ] = boat_name
 
     parts = re.split(PATTERN, prefix)
 

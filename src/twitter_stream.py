@@ -7,8 +7,8 @@ import logging
 import threading
 from datetime import datetime
 from twython import TwythonStreamer
-from solar import parse_tweet
-from flask import Flask, render_template,  jsonify
+from solar import parse_tweet, LAT_FLAG, LONG_FLAG, BOAT_FLAG
+from flask import Flask, render_template,  jsonify, request, Response
 
 # Twitter Access Configuration Tokens
 APP_KEY = 'y8U2Hu1v6KQCbFFfr2kpPIg6F'
@@ -18,23 +18,41 @@ OAUTH_TOKEN_SECRET = 'AvDXNs5JJa3UiITVI7qCFC48IRmnHUGPECuJtJdi80ZuH'
 
 app = Flask(__name__)
 app.queue = []
+app.trail = []
+app.boat_name = 'Não definido'
+
+
+def enqueue(record):
+    if (LONG_FLAG in record) and (LAT_FLAG in record):
+        app.trail.append(record[LONG_FLAG, LAT_FLAG])
+    app.queue.append(record)
+    if BOAT_FLAG in record:
+        app.boat_name = record[BOAT_FLAG]
+
 
 @app.route('/')
 def root_page():
     return render_template('root.html')
 
+
+@app.route('/emulate', methods=['GET'])
+def emulate_tweet():
+    msg = request.args.get('msg', '')
+    record = parse_tweet(msg)
+    logging.info('Emulated tweet - Msg:{0}'.format(msg))
+    enqueue(record)
+    return Response("Ok")
+
+
 @app.route('/telemetry')
 def telemetry():
-    result = {
-        "hour": datetime.now(),
-        "valid": True
-    }
+    valid = True
     try:
-        telemetry = app.queue.pop(0)
-        result.update(telemetry)
+        record = app.queue.pop(0)
     except IndexError:
-        result["valid"] = False
-    return jsonify(**result)
+        valid = False
+        record = {}
+    return jsonify(hour=datetime.now(), valid=valid, boat_name=app.boat_name, **record)
 
 
 class MyStreamer(TwythonStreamer):
@@ -44,8 +62,8 @@ class MyStreamer(TwythonStreamer):
             src = str(tweet['user']['screen_name'])
             tstamp = tweet['created_at']
             logging.info('Tweet from @%s Date: %s Msg:%s' % (src, tstamp, msg))
-            telemetry = parse_tweet(msg)
-            app.queue.append(telemetry)
+            record = parse_tweet(msg)
+            enqueue(record)
         else:
             logging.warn('No DATA %s' % tweet)
 
@@ -68,9 +86,10 @@ def background_thread():
 def main(host, port):
     logging.basicConfig(filename='lunar.log', level=logging.DEBUG, format='%(asctime)s :: %(levelname)s :: %(message)s')
 
-    thread = threading.Thread(target=background_thread, args=())
-    thread.daemon = True
-    thread.start()
+    if False:
+        thread = threading.Thread(target=background_thread, args=())
+        thread.daemon = True
+        thread.start()
 
     logging.info('Starting web server at %s' % port)
     app.run(host=host, port=port)

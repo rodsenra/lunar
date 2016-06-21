@@ -36,14 +36,24 @@ $(function() {
 
     function successful_telemetry(result) {
        $('#hour').val(result.hour);
+       $('#boat_name').val(result.boat_name);
+
        if (result.valid) {
           $('#hour').css({"color":"blue"});
-          $('#timestamp').val(result.timestamp);
-          $('#voltage').val(result.battery_voltage);
+          $('#battery_voltage').val(result.battery_voltage);
+          $('#output_current').val(result.output_current);
           $('#input_current').val(result.input_current);
-          $('#current').val(result.output_current);
-          $('#msg').val(result.msg);
+          $('#battery_current').val(result.battery_current);
+          $('#latitude_begin').val(result.latitude_begin);
+          $('#latitude_end').val(result.latitude_end);
+          $('#longitude_begin').val(result.longitude_begin);
+          $('#longitude_end').val(result.longitude_end);
+          $('#box_temperature').val(result.box_temperature);
+          $('#output_voltage').val(result.output_voltage);
+          $('#last_msg').val(result.last_msg);
+          $('#boat_timestamp').val(result.boat_timestamp);
 
+/*
         var greenIcon = L.icon({
             iconUrl: '/static/marker-icon-green.png'
         });
@@ -54,9 +64,11 @@ $(function() {
 
         var marker_low = L.marker([result.latitude, result.longitude], {icon: greenIcon} ).addTo(map);
         map.setView([result.latitude, result.longitude], 18)
+        */
        } else {
           $('#hour').css({"color":"red"});
        }
+
     }
 
     function setMap() {
