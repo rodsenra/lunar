@@ -10,8 +10,8 @@ from datetime import datetime as dt
 
 MSG_FLAG = '$'
 BOAT_FLAG = 'B'
-LAT_FLAG = ''
-LONG_FLAG = ''
+LAT_FLAG = 'L'
+LONG_FLAG = 'M'
 
 PROTO = {
     'V': {"label": 'battery_voltage', "convert": lambda x: float(x)},
@@ -29,8 +29,8 @@ PROTO = {
                                   month=dt.now().month,
                                   day=dt.now().day,
                                   hour=int(x[:2]),
-                                  minute=int(x[2:4]),
-                                  second=int(x[4:6]))},
+                                  minute=int(x[3:5]),
+                                  second=int(x[6:8]))},
     'T': {"label": 'box_temperature',  "convert": lambda x: float(x)},
     'X': {"label": 'output_voltage',  "convert": lambda x: float(x)},
     BOAT_FLAG: {"label": 'boat_name',  "convert": lambda x: x},
@@ -68,11 +68,11 @@ def parse_tweet(tweet):
     record = {}
     prefix, msg = extract_by_flag(MSG_FLAG, tweet)
     if msg:
-        record[PROTO[MSG_FLAG]] = msg
+        record[PROTO[MSG_FLAG]['label']] = msg
     else:
         prefix, boat_name = extract_by_flag(BOAT_FLAG, tweet)
         if boat_name:
-            record[BOAT_FLAG ] = boat_name
+            record[PROTO[BOAT_FLAG]['label']] = boat_name
 
     parts = re.split(PATTERN, prefix)
 
@@ -82,7 +82,7 @@ def parse_tweet(tweet):
                 continue
             flag = part[0]
             msg = part[1:]
-            record[flag] = PROTO[flag]["convert"](msg)
+            record[PROTO[flag]['label']] = PROTO[flag]["convert"](msg)
     except Exception as ex:
         logging.error("Failed to parse {0:s} with exception {1:s}".format(tweet, ex))
     return record

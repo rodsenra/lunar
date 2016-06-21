@@ -20,5 +20,9 @@ class TestSolar(unittest.TestCase):
 
     def test_parse_two_parts(self):
         record = parse_tweet("V39.75I25.78")
-        self.assertEqual(record["V"], 39.75)
-        self.assertEqual(record["I"], 25.78)
+        self.assertEqual(record["battery_voltage"], 39.75)
+        self.assertEqual(record["output_current"], 25.78)
+
+    def test_parse_many_parts_as_in_doc(self):
+        record = parse_tweet('H09:49:12V39.75X29.35F43.34G15.45I25.78T26.34J54.555K-45.992L54.552M-45.989')
+        self.assertEqual(record["battery_voltage"], 39.75)
