@@ -40,8 +40,8 @@ def telemetry():
 class MyStreamer(TwythonStreamer):
     def on_success(self, tweet):
         if 'text' in tweet:
-            msg = tweet['text']
-            src = tweet['user']['screen_name']
+            msg = str(tweet['text'])
+            src = str(tweet['user']['screen_name'])
             tstamp = tweet['created_at']
             logging.info('Tweet from @%s Date: %s Msg:%s' % (src, tstamp, msg))
             telemetry = parse_tweet(msg)
