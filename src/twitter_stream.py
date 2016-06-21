@@ -23,12 +23,27 @@ app.boat_name = 'Não definido'
 
 
 def enqueue(record):
+    try:
+        result = calcula(70,  # FIXME: porcentagem_de_bateria,
+                         record['latitude_begin'],
+                         record['longitude_begin'],
+                         record['latitude_end'],
+                         record['longitude_end'],
+                         record['sampling_rate'],
+                         100)  # distancia_a_percorrer)
+
+        (corrente_calculada, rotacao_do_motor, tensao_no_motor,
+            tempo_de_autonomia, balanco_de_energia, velocidade_calculada,
+            velocidade, distancia, balanco_de_energia) = result
+
+    except Exception as ex:
+        logging.error("Falhou para calcular métricas. {0:s}".format(ex))
+
     if (LONG_FLAG in record) and (LAT_FLAG in record):
         app.trail.append(record[LONG_FLAG, LAT_FLAG])
     app.queue.append(record)
     if BOAT_FLAG in record:
         app.boat_name = record[BOAT_FLAG]
-
 
 @app.route('/')
 def root_page():
