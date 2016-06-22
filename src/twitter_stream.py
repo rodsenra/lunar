@@ -9,6 +9,7 @@ from datetime import datetime
 from twython import TwythonStreamer
 from solar import parse_tweet, LAT_FLAG, LONG_FLAG, BOAT_FLAG
 from flask import Flask, render_template,  jsonify, request, Response
+from formulas import calcula
 
 # Twitter Access Configuration Tokens
 APP_KEY = 'y8U2Hu1v6KQCbFFfr2kpPIg6F'
@@ -32,12 +33,12 @@ def enqueue(record):
                          record['sampling_rate'],
                          100)  # distancia_a_percorrer)
 
-        (corrente_calculada, rotacao_do_motor, tensao_no_motor,
-            tempo_de_autonomia, balanco_de_energia, velocidade_calculada,
-            velocidade, distancia, balanco_de_energia) = result
+        (corrente_calculada, engine_rpm, output_voltage,
+            tempo_de_autonomia, balanco_de_energia, calculated_speed,
+            speed, distance_travelled, balanco_de_energia) = result
 
     except Exception as ex:
-        logging.error("Falhou para calcular métricas. {0:s}".format(ex))
+        logging.error("Falhou para calcular métricas. {0:s}".format(type(ex)))
 
     if (LONG_FLAG in record) and (LAT_FLAG in record):
         app.trail.append(record[LONG_FLAG, LAT_FLAG])

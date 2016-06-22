@@ -8,8 +8,10 @@ Created on Mon Jan 18 10:33:24 2016
 from math import pi, sqrt, sin, cos, asin
 
 
-def calcula(porcentagem_de_bateria, latitude1, longitude1,
-            latitude2, longitude2,intervalo_de_tempo, distancia_a_percorrer):
+def calcula(porcentagem_de_bateria,
+            latitude1, longitude1,
+            latitude2, longitude2,
+            intervalo_de_tempo, distancia_a_percorrer):
     """
     Retorna a ultima corrente calculada para que o
     balanco de energia nao seja negativo.
@@ -51,7 +53,7 @@ def calcula(porcentagem_de_bateria, latitude1, longitude1,
     velocidade = (distancia/intervalo_de_tempo)/0.51444
     V_estipulada = 0.1
 
-    # looping que varia a velocidade estipulada ate convergir
+    # loop que varia a velocidade estipulada ate convergir
     while balanco_de_energia < 0.0 or balanco_de_energia > 99.99:
         rotacao_do_motor = ((-((-1.78263*(10**-1))*(V_estipulada/
             diametro_do_helice)) + sqrt(((-1.78263*(10**-1))*(V_estipulada/

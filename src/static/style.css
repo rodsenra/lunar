@@ -57,19 +57,38 @@ input {
     width: 122px;
 }
 
+#log {
+    left: 140px;
+    position: absolute;
+    top: 1em;
+    width: 660px;
+    height: 72px;
+}
+
 #map {
- width:600px;
+ margin: 0.8em;
+ width: 500px;
  height: 600px;
- float: right;
- right: 200px;
+ float: left;
 }
 
-#bms {
+#left {
  margin-top: 100px;
+ margin-left: 1em;
+ width: 410px;
+ float: left;
 }
 
-#bms, #arduino, #calculations, #pilot {
- margin-left: 1em;
+#middle {
+ margin-top: 100px;
+ float: left;
+}
+
+#bms, #arduino, #calculations {
  background-color: #eee;
  width: 400px;
+}
+
+#hour {
+ width: 170px;
 }

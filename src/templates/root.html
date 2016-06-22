@@ -23,47 +23,51 @@
     <body>
     <img id="logo" src="static/logo.png" />
 
-    <div id='map'></div>
+    <div id="log">
+        <textarea rows="3" cols="67" id="log_text" readonly>
+        </textarea>
+    </div>
+
 
     <script></script>
 
-     <ul id="bms">
-         <li> Embarcação: <input type="text" id="boat_name" readonly > </li>
-         <li> Última Atualização: <input type="text" id="hour" readonly > </li>
-         <li> Hora na Embarcação: <input type="text" id="boat_timestamp" readonly > </li>
-         <li> Tensão da Bateria: <input type="text" id="battery_voltage" readonly > V </li>
-         <li> Tensão da entrada: <input type="text" id="input_voltage" readonly > V </li>
-         <li> Tensão de saída: <input type="text" id="output_voltage" readonly > V </li>
-         <li> Corrente da Bateria: <input type="text" id="battery_current" readonly > A </li>
-         <li> Corrente de entrada: <input type="text" id="input_current" readonly > A </li>
-         <li> Corrente de saída: <input type="text" id="output_current" readonly > A </li>
-     </ul>
+    <div id="left">
+         <ul id="bms">
+             <li> Embarcação: <input type="text" id="boat_name" readonly > </li>
+             <li> Última Atualização: <input type="text" id="hour" readonly > </li>
+             <li> Hora na Embarcação: <input type="text" id="boat_timestamp" readonly > </li>
+             <li> Tensão da Bateria: <input type="text" id="battery_voltage" readonly > V </li>
+             <li> Tensão da entrada: <input type="text" id="input_voltage" readonly > V </li>
+             <li> Tensão de saída: <input type="text" id="output_voltage" readonly > V </li>
+             <li> Corrente da Bateria: <input type="text" id="battery_current" readonly > A </li>
+             <li> Corrente de entrada: <input type="text" id="input_current" readonly > A </li>
+             <li> Corrente de saída: <input type="text" id="output_current" readonly > A </li>
+         </ul>
 
-     <ul id="arduino">
-        <li> Temperatura na caixa: <input type="text" id="box_temperature" readonly > °C </li>
-        <li> Latitude Inicial: <input type="text" id="latitude_begin" readonly > </li>
-        <li> Latitude Final: <input type="text" id="latitude_end" readonly > </li>
-        <li> Longitude Inicial: <input type="text" id="longitude_begin" readonly > </li>
-        <li> Longitude Final: <input type="text" id="longitude_end" readonly > </li>
-        <li> Velocidade: <input type="text" id="speed" readonly > nós </li>
-     </ul>
+         <ul id="arduino">
+            <li> Temperatura na caixa: <input type="text" id="box_temperature" readonly > °C </li>
+            <li> Latitude Inicial: <input type="text" id="latitude_begin" readonly > </li>
+            <li> Latitude Final: <input type="text" id="latitude_end" readonly > </li>
+            <li> Longitude Inicial: <input type="text" id="longitude_begin" readonly > </li>
+            <li> Longitude Final: <input type="text" id="longitude_end" readonly > </li>
+            <li> Velocidade: <input type="text" id="speed" readonly > nós </li>
+         </ul>
+    </div>
 
+    <div id="middle">
+        <ul id="calculations">
+          <li> Ti:  <input type="text" id="time_begin" readonly > </li>
+          <li> Tf:  <input type="text" id="time_end" readonly > </li>
+          <li> Energia:  <input type="text" id="energy" readonly > Ah</li>
+          <li> Energia de hoje:  <input type="text" id="energy_of_today" readonly > Ah </li>
+          <li> Rotação do Motor:  <input type="text" id="engine_rpm" readonly > rpm </li>
+          <li> Distância percorrida:  <input type="text" id="distance_travelled" readonly > mn </li>
+          <li> Distância à percorrer:  <input type="text" id="distance_remaining" readonly > mn </li>
+         </ul>
 
-    <ul id="calculations">
-      <li> Ti:  <input type="text" id="time_begin" readonly > </li>
-      <li> Tf:  <input type="text" id="time_end" readonly > </li>
-      <li> Energia:  <input type="text" id="energy" readonly > Ah</li>
-      <li> Energia de hoje:  <input type="text" id="energy_of_today" readonly > Ah </li>
-      <li> Rotação do Motor:  <input type="text" id="engine_rpm" readonly > rpm </li>
-      <li> Distância percorrida:  <input type="text" id="distance_travelled" readonly > mn </li>
-      <li> Distância à percorrer:  <input type="text" id="distance_remaining" readonly > mn </li>
-     </ul>
+    </div>
 
-    <ul id="pilot">
-         <li> Mensagem: <input type="text" id="last_msg" readonly > </li>
-         <li> Alarme: <input type="text" id="alarm" readonly > </li>
-         <li> Erros: <input type="text" id="error" readonly > </li>
-     </ul>
+    <div id='map'></div>
 
     </body>
 
