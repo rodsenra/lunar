@@ -50,6 +50,7 @@ def calcula(porcentagem_de_bateria,
         cos(latitude1)*cos(latitude2)*sin(diferenca_longitude/2.0)**2)
     c = 2*asin(sqrt(a))
     distancia = 6378140.0*c
+    
     velocidade = (distancia/intervalo_de_tempo)/0.51444
     V_estipulada = 0.1
 

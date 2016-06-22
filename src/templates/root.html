@@ -15,7 +15,11 @@
          <script src="/static/leaflet.js"></script>
          <script src="/static/leaflet.awesome-markers.js"></script>
 
+        <script src="/static/d3.min.js"></script>
+        <script src="/static/line_and_area.js"></script>
         <script src="/static/interface.js"></script>
+
+
         <link rel="stylesheet" href="/static/style.css">
 
     </head>
@@ -29,7 +33,6 @@
     </div>
 
 
-    <script></script>
 
     <div id="left">
          <ul id="bms">
@@ -64,6 +67,8 @@
           <li> Distância percorrida:  <input type="text" id="distance_travelled" readonly > mn </li>
           <li> Distância à percorrer:  <input type="text" id="distance_remaining" readonly > mn </li>
          </ul>
+
+       <div id="plot"></div>
 
     </div>
 
