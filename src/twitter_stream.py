@@ -33,9 +33,13 @@ def enqueue(record):
                          record['sampling_rate'],
                          100)  # distancia_a_percorrer)
 
-        (corrente_calculada, engine_rpm, output_voltage,
-            tempo_de_autonomia, balanco_de_energia, calculated_speed,
-            speed, distance_travelled, balanco_de_energia) = result
+        (calculated_current, engine_rpm, output_voltage,
+            autonomy_time, energy_balance, calculated_speed,
+            speed, distance_travelled) = result
+
+        record['speed'] = speed
+        record['engine_rpm'] = engine_rpm
+        record['distance_travelled'] = distance_travelled
 
     except Exception as ex:
         logging.error("Falhou para calcular métricas. {0:s}".format(type(ex)))
@@ -102,10 +106,9 @@ def background_thread():
 def main(host, port):
     logging.basicConfig(filename='lunar.log', level=logging.DEBUG, format='%(asctime)s :: %(levelname)s :: %(message)s')
 
-    if False:
-        thread = threading.Thread(target=background_thread, args=())
-        thread.daemon = True
-        thread.start()
+    thread = threading.Thread(target=background_thread, args=())
+    thread.daemon = True
+    thread.start()
 
     logging.info('Starting web server at %s' % port)
     app.run(host=host, port=port)

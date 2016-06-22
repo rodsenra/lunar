@@ -52,8 +52,11 @@ $(function() {
           $('#output_voltage').val(result.output_voltage);
           $('#last_msg').val(result.last_msg);
           $('#boat_timestamp').val(result.boat_timestamp);
+          $('#engine_rpm').val(result.engine_rpm);
+          $('#speed').val(result.speed);
+          $('#distance_travelled').val(result.distance_travelled);
 
-/*
+
         var greenIcon = L.icon({
             iconUrl: '/static/marker-icon-green.png'
         });
@@ -62,9 +65,12 @@ $(function() {
             iconUrl: '/static/marker-icon-red.png'
         });
 
-        var marker_low = L.marker([result.latitude, result.longitude], {icon: greenIcon} ).addTo(map);
-        map.setView([result.latitude, result.longitude], 18)
-        */
+        var marker_from = L.marker([result.latitude_begin, result.longitude_begin], {icon: redIcon} ).addTo(map);
+
+        var marker_low = L.marker([result.latitude_end, result.longitude_end], {icon: greenIcon} ).addTo(map);
+
+        map.setView([result.latitude_end, result.longitude_end], 18)
+
        } else {
           $('#hour').css({"color":"red"});
        }

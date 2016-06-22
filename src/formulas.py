@@ -79,9 +79,14 @@ def calcula(porcentagem_de_bateria,
         if balanco_de_energia < 0.0:
             V_estipulada -= 0.00001
 
-    return (corrente_calculada, rotacao_do_motor, tensao_no_motor,
-            tempo_de_autonomia, balanco_de_energia, velocidade_calculada,
-            velocidade, distancia, balanco_de_energia)
+    return (corrente_calculada,
+            rotacao_do_motor,
+            tensao_no_motor,
+            tempo_de_autonomia,
+            balanco_de_energia,
+            velocidade_calculada,
+            velocidade,
+            distancia)
 
 
 # print calcula(99.0, 52.014897, 4.692556, 52.014791, 4.689938, 30.0, 17750.0)
