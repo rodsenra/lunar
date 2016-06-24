@@ -178,7 +178,7 @@ function setup_plot(data, filled_data) {
         .y1(function(d) { return y(d.close); });
 
     // Adds the svg canvas
-    var svg = d3.select("#plot")
+    var svg = d3.select("#plotd3")
         .append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)

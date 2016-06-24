@@ -94,7 +94,14 @@ input {
 }
 
 
-#plot {
+#plotd3 {
+ border: 1px solid #eee;
+ width: 400px;
+ float: left;
+ height: 265px;
+}
+
+#highstocks {
  border: 1px solid #eee;
  width: 400px;
  float: left;
@@ -103,7 +110,7 @@ input {
 
 path {
     stroke: steelblue;
-    stroke-width: 2;
+    stroke-width: 1;
     fill: none;
 }
 

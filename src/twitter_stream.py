@@ -106,10 +106,10 @@ def background_thread():
 def main(host, port):
     logging.basicConfig(filename='lunar.log', level=logging.DEBUG, format='%(asctime)s :: %(levelname)s :: %(message)s')
 
-    if False:
-        thread = threading.Thread(target=background_thread, args=())
-        thread.daemon = True
-        thread.start()
+    #if False:
+    thread = threading.Thread(target=background_thread, args=())
+    thread.daemon = True
+    thread.start()
 
     logging.info('Starting web server at %s' % port)
     app.run(host=host, port=port)
